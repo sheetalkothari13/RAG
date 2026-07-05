@@ -1,0 +1,27 @@
+ ML intro
+Machine Learning is a technique that allows computers to learn from data and make decisions without explicit programming. It works by identifying patterns in data and using them to make predictions. It is used in areas such as:
+
+Image Recognition
+Speech Processing
+Language Translation
+Recommender Systems
+
+Need for Machine Learning
+Machine Learning is important because traditional programming cannot handle complex tasks or large amounts of data efficiently. ML overcomes this by learning from data and making predictions without fixed rules. It is needed for the following reasons:
+
+1. Solving Complex Business Problems
+Traditional programming struggles with tasks like language understanding and medical diagnosis. ML learns from data and predicts outcomes easily.
+
+Examples:
+
+Image and speech recognition in healthcare.
+Language translation and sentiment analysis.
+2. Handling Large Volumes of Data
+The internet generates huge amounts of data every day. Machine Learning processes and analyzes this data quickly by providing valuable insights and real time predictions.
+
+Examples:
+
+Fraud detection in financial transactions.
+Personalized feed recommendations on Facebook and Instagram from billions of interactions.
+
+    

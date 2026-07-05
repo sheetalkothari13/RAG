@@ -1,0 +1,45 @@
+ Python programming intro
+    Concept:
+Data is raw, unprocessed facts — numbers, characters, or signals — that by themselves carry no context (e.g.,
+72, 'Ravi', 08). Information is data that has been processed, organized, or structured so it becomes meaningful
+and useful for decision-making (e.g., 'Ravi scored 72 marks on 08-06-2026'). The transformation of data into
+information happens through processing: sorting, classifying, summarizing, and calculating. Key properties of
+good information are accuracy, timeliness, completeness, relevance, and reliability. In the
+data-information-knowledge-wisdom (DIKW) hierarchy, data sits at the base, information is data with context,
+knowledge is information with understanding of patterns, and wisdom is knowledge applied with judgement.
+CPGET frequently tests the distinction between data and information, examples of each, and characteristics of
+quality information.
+
+Practice Questions:
+Q1. Which of the following is an example of 'information' rather than raw 'data'?
+Solution: 'The average monthly rainfall in Hyderabad in June is 120 mm' is information because raw daily
+rainfall readings have been processed (averaged) and given context. A single reading like '15 mm' alone is data.
+Q2. List three properties that make information 'good quality' for decision-making.
+Solution: Accuracy (free from errors), Timeliness (available when needed), and Relevance (applicable to the
+decision at hand). Completeness and reliability are also acceptable answers.
+Q3. Explain with one example how the same data can produce different information for different users.
+Solution: Sales figures (data) of a shop can be processed into 'total monthly revenue' for an owner, or into
+'best-selling product' for a marketing team — same raw data, different processing goals, different information.
+
+Previous Year Questions:
+1. Data can best be described as:
+(A) Processed facts 
+(B) Raw, unorganized facts 
+(C) Knowledge derived
+from experience 
+(D) A decision-making tool
+Answer: (B)
+2. Which term refers to data that has been given context and meaning?
+(A) Database 
+(B) Information 
+(C)Algorithm 
+(D) Protocol
+Answer: (B)
+3. In the DIKW hierarchy, which level comes immediately above 'Data'?
+(A) Wisdom 
+(B) Knowledge 
+(C)Information 
+(D) Intelligence
+Answer: (C)
+
+    
