@@ -20,3 +20,5 @@ requests
 
 openpyxl
 python-dotenv
+
+langchain-groq
