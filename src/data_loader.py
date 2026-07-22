@@ -1,9 +1,14 @@
 from pathlib import Path
 from typing import List, Any
-from langchain_community.document_loaders import PyPDFLoader, TextLoader, CSVLoader
-from langchain_community.document_loaders import Docx2txtLoader
+from langchain_community.document_loaders import (
+    PyPDFLoader,
+    TextLoader,
+    CSVLoader,
+    Docx2txtLoader,
+    JSONLoader,
+)
 from langchain_community.document_loaders.excel import UnstructuredExcelLoader
-from langchain_community.document_loaders import JSONLoader
+
 
 def load_all_documents(data_dir: str) -> List[Any]:
     # """
@@ -95,6 +100,39 @@ def load_all_documents(data_dir: str) -> List[Any]:
 
     print(f"Total loaded documents: {len(documents)}")
     return documents
+
+def load_single_file(file_path: str) -> List[Any]:
+    """
+    Load a single supported file and return LangChain Documents.
+    """
+
+    file_path = Path(file_path)
+    suffix = file_path.suffix.lower()
+    print(f"[INFO] Loading {file_path.name}")
+    try:
+        if suffix == ".pdf":
+            loader = PyPDFLoader(str(file_path))
+        elif suffix == ".txt":
+            loader = TextLoader(str(file_path))
+        elif suffix == ".csv":
+            loader = CSVLoader(str(file_path))
+        elif suffix == ".xlsx":
+            loader = UnstructuredExcelLoader(str(file_path))
+        elif suffix == ".docx":
+            loader = Docx2txtLoader(str(file_path))
+        elif suffix == ".json":
+            loader = JSONLoader(str(file_path))
+        else:
+            print(f"[WARNING] Unsupported file: {file_path.name}")
+            return []
+        docs = loader.load()
+
+        print(f"[INFO] Loaded {len(docs)} documents")
+        return docs
+
+    except Exception as e:
+        print(f"[ERROR] Failed to load {file_path.name}: {e}")
+        return []
 
 # Example usage
 if __name__ == "__main__":

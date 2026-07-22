@@ -1,4 +1,5 @@
 import os
+import json
 import faiss
 import numpy as np
 import pickle
@@ -18,14 +19,32 @@ class FaissVectorStore:
         self.chunk_overlap = chunk_overlap
         print(f"[INFO] Loaded embedding model: {embedding_model}")
 
-    def build_from_documents(self, documents: List[Any]):
+    def build_from_documents(self, documents: List[Any],indexed_files=None):
         print(f"[INFO] Building vector store from {len(documents)} raw documents...")
         emb_pipe = EmbeddingPipeline(model_name=self.embedding_model, chunk_size=self.chunk_size, chunk_overlap=self.chunk_overlap)
         chunks = emb_pipe.chunk_documents(documents)
         embeddings = emb_pipe.embed_chunks(chunks)
-        metadatas = [{"text": chunk.page_content} for chunk in chunks]
+        metadatas = [
+                {
+                    "text": chunk.page_content,
+                    "source": chunk.metadata.get("source"),
+                    "page": chunk.metadata.get("page"),
+                }
+                for chunk in chunks
+            ]
         self.add_embeddings(np.array(embeddings).astype('float32'), metadatas)
         self.save()
+        if indexed_files is not None:
+            json_path = os.path.join(
+                self.persist_dir,
+                "indexed_files.json"
+            )
+            
+            with open(json_path, "w") as f:
+                json.dump(indexed_files, f, indent=4)
+        print(f"Raw documents : {len(documents)}")
+        print(f"Chunks        : {len(chunks)}")
+        print(f"Vectors       : {embeddings.shape[0]}")
         print(f"[INFO] Vector store built and saved to {self.persist_dir}")
 
     def add_embeddings(self, embeddings: np.ndarray, metadatas: List[Any] = None):

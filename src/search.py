@@ -3,6 +3,7 @@ from dotenv import load_dotenv
 from .vectorstore import FaissVectorStore
 from langchain_groq import ChatGroq
 from .data_loader import load_all_documents
+from pathlib import Path
 
 load_dotenv()
 
@@ -16,10 +17,30 @@ class RAGSearch:
         meta_path = os.path.join(persist_dir, "metadata.pkl")
         if not (os.path.exists(faiss_path) and os.path.exists(meta_path)):
             docs = load_all_documents("data")
-            self.vectorstore.build_from_documents(docs)
+
+            files = []
+
+            for ext in [
+                "*.pdf",
+                "*.txt",
+                "*.csv",
+                "*.xlsx",
+                "*.docx",
+                "*.json",
+            ]:
+                files.extend(Path("data").rglob(ext))
+
+            indexed_files = [
+                str(file.relative_to("data").as_posix())
+                for file in files
+            ]
+
+            self.vectorstore.build_from_documents(
+                docs,
+                indexed_files=indexed_files
+            )
         else:
             self.vectorstore.load()
-        groq_api_key = ""
         self.llm = ChatGroq(groq_api_key=groq_api_key, model_name=llm_model)
         print(f"[INFO] Groq LLM initialized: {llm_model}")
 

@@ -4,7 +4,7 @@ if __name__ == "__main__":
     rag = RAGSearch()
 
     summary = rag.search_and_summarize(
-        "What is Natural Language Processing?",
+        "What is NoSQL?",
         top_k=3
     )
 
